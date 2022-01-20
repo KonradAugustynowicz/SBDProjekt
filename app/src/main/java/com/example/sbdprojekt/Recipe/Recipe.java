@@ -1,6 +1,7 @@
-package com.example.sbdprojekt;
+package com.example.sbdprojekt.Recipe;
 
 import android.content.Context;
+import android.os.Parcelable;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -14,7 +15,7 @@ import org.json.JSONObject;
 import java.util.LinkedList;
 import java.util.UUID;
 
-public class Recipe {
+public class Recipe{
     public int id;
     int apiId;
     String name;
@@ -29,6 +30,16 @@ public class Recipe {
         this.link = link;
         this.imageApi = imageApi;
         this.apiId = apiId;
+    }
+
+    public Recipe(Recipe recipe) {
+        this.apiId = recipe.apiId;
+        this.name = recipe.name;
+        this.link = recipe.link;
+        this.imageApi = recipe.imageApi;
+        this.description = recipe.description;
+        this.apiId = recipe.apiId;
+        ingredients = recipe.ingredients;
     }
 
     public String getName() {
@@ -77,5 +88,13 @@ public class Recipe {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LinkedList<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(LinkedList<String> ingredients) {
+        this.ingredients = ingredients;
     }
 }

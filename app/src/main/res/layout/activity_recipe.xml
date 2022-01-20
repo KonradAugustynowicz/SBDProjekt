@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecipeActivity">
+    tools:context=".Recipe.RecipeActivity"
+    android:configChanges="orientation|screenSize">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,7 +24,7 @@
                 android:layout_marginBottom="16dp"
                 android:gravity="center"
                 android:text="@string/recipe_name"
-                android:textSize="20dp"/>
+                android:textSize="20sp"/>
 
             <ImageView
                 android:id="@+id/recipe_image"
@@ -38,12 +39,13 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/description"
-                android:textSize="20dp"/>
+                android:textSize="20sp"/>
 
-            <TextView
-                android:id="@+id/description_textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/description_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </androidx.fragment.app.FragmentContainerView>
 
             <TextView
                 android:id="@+id/textView2"
@@ -52,7 +54,13 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/ingredients"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/ingredients_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </androidx.fragment.app.FragmentContainerView>
 
             <TextView
                 android:id="@+id/ingredients_textView"
@@ -64,10 +72,10 @@
                 android:layout_width="118dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:textSize="20dp"/>
+                android:textSize="20sp"/>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/add_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add" />

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SBDProjekt</string>
+    <string name="menu_button">Menu</string>
+    <string name="search_button">Szukaj</string>
+    <string name="list_button">Lista</string>
+    <string name="add">Dodaj</string>
+    <string name="recipe_search_placeholder">Co gotujemy?</string>
+    <string name="recipe_name">przepis_nazwa</string>
+    <string name="link">Link:</string>
+    <string name="description">Opis</string>
+    <string name="ingredients">Składniki</string>
+    <string name="no_recipe_found">Nie znaleziono przepisu</string>
+</resources>

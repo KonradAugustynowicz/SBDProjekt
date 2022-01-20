@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SBDProjekt</string>
+    <string name="app_name">SBDProject</string>
     <string name="menu_button">Menu</string>
     <string name="search_button">Search</string>
     <string name="list_button">List</string>
@@ -7,23 +7,8 @@
     <string name="recipe_search_placeholder">What are we cooking?</string>
     <string name="recipe_name">recipe_name</string>
     <string name="link">Link:</string>
-    <string name="description">Description:</string>
-    <string name="ingredients">Ingredients:</string>
+    <string name="description">Description</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="no_recipe_found">No recipe was found</string>
 
-    <string-array name="lista_produktow">
-        <item>a</item>
-        <item>b</item>
-        <item>c</item>
-        <item>d</item>
-        <item>e</item>
-    </string-array>
-    <string name="title_activity_main2">MainActivity2</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.sbdprojekt;
+package com.example.sbdprojekt.Recipe;
 
 import android.content.Context;
 import android.text.Html;
@@ -8,13 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
+import com.example.sbdprojekt.R;
+import com.example.sbdprojekt.RequestQueueSingleton;
 
 import java.util.LinkedList;
 
@@ -54,20 +55,16 @@ public class RecepieListAdapter extends RecyclerView.Adapter<RecepieListAdapter.
 
     public class RecepieListHolder extends RecyclerView.ViewHolder{
         TextView recepieName;
-        TextView linkToRecipe;
         ImageView imageView;
 
         public RecepieListHolder(@NonNull View itemView, RecipeViewInterface recipeViewInterface) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
             recepieName = itemView.findViewById(R.id.recipe_name);
-            linkToRecipe = itemView.findViewById(R.id.link_to_recipe);
             if (recipeList.size()>0) {
-                recepieName.setText(recipeList.get(i).name);
-                linkToRecipe.setText(Html.fromHtml("<a href='" + recipeList.get(i).link + "'> link </a>"));
-                linkToRecipe.setMovementMethod(LinkMovementMethod.getInstance());
+                recepieName.setText(recipeList.get(i).getName());
                 RequestQueueSingleton.getInstance(itemView.getContext()).getImageLoader().get(
-                        "https://spoonacular.com/recipeImages/"+ recipeList.get(i).imageApi,
+                        "https://spoonacular.com/recipeImages/"+ recipeList.get(i).getImageApi(),
                         new ImageLoader.ImageListener() {
                     @Override
                     public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
@@ -79,7 +76,6 @@ public class RecepieListAdapter extends RecyclerView.Adapter<RecepieListAdapter.
 
                     }
                 });
-                recipeList.get(i).setId(i);
                 i++;
             }
 
