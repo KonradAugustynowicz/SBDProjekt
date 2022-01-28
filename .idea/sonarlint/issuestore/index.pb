@@ -20,3 +20,13 @@ X
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+{
+Kapp/src/main/java/com/example/sbdprojekt/Fragments/IngredientsFragment.java,8\a\8a8928c692fc8af43cd1781c594f4ac78b625c79
+x
+Happ/src/main/java/com/example/sbdprojekt/Fragments/ProgressFragment.java,6\4\6467996ebc72bce303a55f7f551e6d71cec4e37c
+{
+Kapp/src/main/java/com/example/sbdprojekt/Fragments/DescriptionFragment.java,b\f\bf092df4914f587000d6817994693471ebb488f8
+k
+;app/src/main/java/com/example/sbdprojekt/Recipe/Recipe.java,f\9\f97c6223d1e8091433d868ff257a61c82f3c3883

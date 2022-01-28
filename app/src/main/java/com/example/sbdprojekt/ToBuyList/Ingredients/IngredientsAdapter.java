@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -38,13 +39,14 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull IngredientsHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.ingredient.setText(IngredientsStorage.getIngredients().get(position).getName());
-        holder.checkBox.setChecked(IngredientsStorage.getIngredients().get(position).isChecked());
+        holder.ingredient.setText(RecipeStorage.getRecipe(recipeId).getIngredients().get(position).getName());
+        holder.checkBox.setChecked(RecipeStorage.getRecipe(recipeId).getIngredients().get(position).isChecked());
 
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                IngredientsStorage.getIngredients().get(position).setChecked(b);
+                RecipeStorage.getRecipe(recipeId).getIngredients().get(position).setChecked(b);
+
             }
         });
     }
@@ -58,12 +60,11 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         TextView ingredient;
         CheckBox checkBox;
 
+
         public IngredientsHolder(@NonNull View itemView) {
             super(itemView);
             ingredient = itemView.findViewById(R.id.ingredients_textView);
             checkBox = itemView.findViewById(R.id.checkBox);
-
-
         }
     }
 }

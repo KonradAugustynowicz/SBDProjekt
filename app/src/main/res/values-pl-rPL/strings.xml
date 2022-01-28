@@ -11,4 +11,5 @@
     <string name="description">Opis</string>
     <string name="ingredients">Składniki</string>
     <string name="no_recipe_found">Nie znaleziono przepisu</string>
+    <string name="delete">Usuń</string>
 </resources>

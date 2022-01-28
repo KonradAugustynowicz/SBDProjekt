@@ -1,11 +1,14 @@
 package com.example.sbdprojekt;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,6 +47,70 @@ public class MainActivity extends AppCompatActivity implements RecipeViewInterfa
     }
 
     @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState.isEmpty()) return;// jeśli nic nie zapisaliśmy nie wykonaj kodu
+        String searched = savedInstanceState.getString("recipes");
+        String url ="https://api.spoonacular.com/recipes/search?query="+ searched + "&number=5&apiKey=2f9e491e548a4435b945d8242f429033";
+
+        final String[] recipeId = new String[1];
+        final RecepieListAdapter[] listAdapter = {new RecepieListAdapter(this, recipeList,this)};
+        JsonObjectRequest request = null;
+
+        savedInstanceState.getString("recipes");
+        request = (new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    recipeId[0] = response.getJSONArray("results").getJSONObject(0).getString("id"); //w getJsonObject numerek przepisu
+                    Toast.makeText(MainActivity.this, response.getJSONArray("results").getJSONObject(0).getString("title"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, recipeId[0], Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                recipeList.clear();
+
+                try {
+                    int length=response.getJSONArray("results").length();
+                    if (length!=0) {
+                        for (int i=0; i < length; i++) {
+                            JSONObject ingredient = response.getJSONArray("results").getJSONObject(i);
+
+                            recipeList.add(
+                                    new Recipe(ingredient.getString("title"),
+                                            ingredient.getString("sourceUrl"),
+                                            ingredient.getString("image"),
+                                            ingredient.getInt("id")));
+                        }
+                    }else{
+                        View contextView = findViewById(R.id.search_button) ;
+                        Snackbar.make(contextView, R.string.no_recipe_found, Snackbar.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                listAdapter[0] = new RecepieListAdapter(MainActivity.this,recipeList,MainActivity.this);
+                recycler_View.setAdapter(listAdapter[0]);
+                recycler_View.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainActivity.this, "response.toString()", Toast.LENGTH_SHORT).show();
+            }
+        }));
+
+        RequestQueueSingleton.getInstance(MainActivity.this).addToRequestQueue(request);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString("recipes",input_plainText.getText().toString());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -61,7 +128,6 @@ public class MainActivity extends AppCompatActivity implements RecipeViewInterfa
 
         //przypisanie funkcji przyciskom
         search_button.setOnClickListener(view -> {
-
             //Api request(znajdź przepis)
             JsonObjectRequest request = null;
             String url ="https://api.spoonacular.com/recipes/search?query="+ input_plainText.getText().toString() + "&number=5&apiKey=2f9e491e548a4435b945d8242f429033";

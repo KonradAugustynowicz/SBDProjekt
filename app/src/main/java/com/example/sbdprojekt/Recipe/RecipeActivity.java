@@ -25,6 +25,7 @@ import com.example.sbdprojekt.Fragments.IngredientsFragment;
 import com.example.sbdprojekt.Fragments.ProgressFragment;
 import com.example.sbdprojekt.R;
 import com.example.sbdprojekt.RequestQueueSingleton;
+import com.example.sbdprojekt.ToBuyList.Ingredients.Ingredient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -99,13 +100,13 @@ public class RecipeActivity extends AppCompatActivity {
                     recipe.description = response.getString("summary");
                     int i = 0;
                     while (response.getJSONArray("extendedIngredients").length() > i) {
-                        recipe.ingredients.add(response.getJSONArray("extendedIngredients").getJSONObject(i).getString("original"));
+                        recipe.ingredients.add(new Ingredient(response.getJSONArray("extendedIngredients").getJSONObject(i).getString("original")));//tutaj
                         i++;
                     }
                     i = 0;
 
                     while (recipe.ingredients.size() > i) {
-                        ingredientsFromApi += recipe.ingredients.get(i) + "\n\n";
+                        ingredientsFromApi += recipe.ingredients.get(i).getName() + "\n\n";
                         i++;
                     }
                     addButton.setOnClickListener(new View.OnClickListener() {
@@ -130,9 +131,6 @@ public class RecipeActivity extends AppCompatActivity {
 
         RequestQueueSingleton.getInstance(this).addToRequestQueue(request);
         //koniec części z api
-
-
-
     }
 
     @Override

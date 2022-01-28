@@ -1,5 +1,7 @@
 package com.example.sbdprojekt.Recipe;
 
+import com.example.sbdprojekt.ToBuyList.Ingredients.Ingredient;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,8 +11,6 @@ public class RecipeStorage {
     private static int id=0;
 
     private RecipeStorage() {
-        if (recipeStorage ==  null)
-            this.recipes= new HashSet<>();
     }
 
     public static Set<Recipe> getRecipes(){
@@ -34,6 +34,15 @@ public class RecipeStorage {
         tempRecipe.setId(id);
         id++;
         recipes.add(tempRecipe);
+    }
+
+    public static void removeRecipe(Recipe recipe){
+        recipes.remove(RecipeStorage.recipes.remove(recipe));
+        id=0;
+        for (Recipe recipe1:recipes){
+            recipe1.setId(id);
+            id++;
+        }
     }
 
 }

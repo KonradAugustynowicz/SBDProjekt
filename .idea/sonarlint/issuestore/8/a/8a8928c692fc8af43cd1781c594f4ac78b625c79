@@ -1,0 +1,5 @@
+
+C	java:S108+")Either remove or fill this block of code.(¥ì¹Æüÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ª›«­şÿÿÿÿ
+f
+java:S2259)"PA "NullPointerException" could be thrown; "savedInstanceState" is nullable here.(‡à

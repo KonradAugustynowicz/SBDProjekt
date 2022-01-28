@@ -8,6 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.sbdprojekt.ToBuyList.Ingredients.Ingredient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,7 +23,7 @@ public class Recipe{
     String link;
     String imageApi;
     String description;
-    LinkedList<String> ingredients=new LinkedList<>();
+    LinkedList<Ingredient> ingredients=new LinkedList<>();
 
 
     public Recipe(String name, String link,String imageApi,int apiId) {
@@ -90,11 +91,11 @@ public class Recipe{
         this.description = description;
     }
 
-    public LinkedList<String> getIngredients() {
+    public LinkedList<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(LinkedList<String> ingredients) {
+    public void setIngredients(LinkedList<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 }
